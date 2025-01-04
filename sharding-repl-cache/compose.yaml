@@ -160,14 +160,35 @@ services:
     image: kazhem/pymongo_api:1.0.0
     depends_on:
       - mongos_router
+      - redis_cache
     ports:
       - "8080:8080"
     environment:
       MONGODB_URL: "mongodb://mongos_router:27020"
       MONGODB_DATABASE_NAME: "somedb"
+      REDIS_URL: "redis://redis_cache:6379"
     networks:
       app-network:
         ipv4_address: 173.17.0.5
+
+  # Redis для кеширования
+  redis_cache:
+    image: redis:latest
+    container_name: redis_cache
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      app-network:
+        ipv4_address: 173.17.0.6
+    volumes:
+      - ./redis-data:/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      start_period: 10s
 
 networks:
   app-network:
@@ -185,3 +206,4 @@ volumes:
   shard2-data1:
   shard2-data2:
   shard2-data3:
+  redis-data: {}
