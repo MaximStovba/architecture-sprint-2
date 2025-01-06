@@ -21,7 +21,17 @@ services:
         "27017",
       ]
     healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      test:
+        [
+          "CMD",
+          "mongosh",
+          "--host",
+          "configSrv",
+          "--port",
+          "27017",
+          "--eval",
+          "db.adminCommand('ping')",
+        ]
       interval: 5s
       start_period: 10s
 
@@ -40,7 +50,17 @@ services:
     command:
       ["--shardsvr", "--replSet", "shard1", "--bind_ip_all", "--port", "27018"]
     healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      test:
+        [
+          "CMD",
+          "mongosh",
+          "--host",
+          "shard1_1",
+          "--port",
+          "27018",
+          "--eval",
+          "db.adminCommand('ping')",
+        ]
       interval: 5s
       start_period: 10s
 
@@ -56,7 +76,17 @@ services:
     command:
       ["--shardsvr", "--replSet", "shard1", "--bind_ip_all", "--port", "27018"]
     healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      test:
+        [
+          "CMD",
+          "mongosh",
+          "--host",
+          "shard1_2",
+          "--port",
+          "27018",
+          "--eval",
+          "db.adminCommand('ping')",
+        ]
       interval: 5s
       start_period: 10s
 
@@ -72,7 +102,17 @@ services:
     command:
       ["--shardsvr", "--replSet", "shard1", "--bind_ip_all", "--port", "27018"]
     healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      test:
+        [
+          "CMD",
+          "mongosh",
+          "--host",
+          "shard1_3",
+          "--port",
+          "27018",
+          "--eval",
+          "db.adminCommand('ping')",
+        ]
       interval: 5s
       start_period: 10s
 
@@ -91,7 +131,17 @@ services:
     command:
       ["--shardsvr", "--replSet", "shard2", "--bind_ip_all", "--port", "27019"]
     healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      test:
+        [
+          "CMD",
+          "mongosh",
+          "--host",
+          "shard2_1",
+          "--port",
+          "27019",
+          "--eval",
+          "db.adminCommand('ping')",
+        ]
       interval: 5s
       start_period: 10s
 
@@ -107,7 +157,17 @@ services:
     command:
       ["--shardsvr", "--replSet", "shard2", "--bind_ip_all", "--port", "27019"]
     healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      test:
+        [
+          "CMD",
+          "mongosh",
+          "--host",
+          "shard2_2",
+          "--port",
+          "27019",
+          "--eval",
+          "db.adminCommand('ping')",
+        ]
       interval: 5s
       start_period: 10s
 
@@ -123,7 +183,17 @@ services:
     command:
       ["--shardsvr", "--replSet", "shard2", "--bind_ip_all", "--port", "27019"]
     healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      test:
+        [
+          "CMD",
+          "mongosh",
+          "--host",
+          "shard2_3",
+          "--port",
+          "27019",
+          "--eval",
+          "db.adminCommand('ping')",
+        ]
       interval: 5s
       start_period: 10s
 
@@ -147,7 +217,17 @@ services:
         "27020",
       ]
     healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      test:
+        [
+          "CMD",
+          "mongosh",
+          "--host",
+          "mongos_router",
+          "--port",
+          "27020",
+          "--eval",
+          "db.adminCommand('ping')",
+        ]
       interval: 5s
       start_period: 10s
 
